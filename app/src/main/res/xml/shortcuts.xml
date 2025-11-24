@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="shortcut_recent_overlay"
+        android:enabled="true"
+        android:icon="@drawable/anifloat_logo"
+        android:shortcutShortLabel="@string/shortcut_recent_short"
+        android:shortcutLongLabel="@string/shortcut_recent_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.kotla.anifloat.ui.shortcuts.RecentOverlayActivity"
+            android:targetPackage="com.kotla.anifloat" />
+    </shortcut>
+</shortcuts>
+
