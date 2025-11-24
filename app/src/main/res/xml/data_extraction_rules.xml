@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<data-extraction-rules>
+<data-extraction-rules xmlns:tools="http://schemas.android.com/tools">
     <cloud-backup>
-        <include domain="user" path="."/>
+        <include domain="user" path="."
+            tools:ignore="FullBackupContent" />
         <include domain="file" path="."/>
     </cloud-backup>
     <device-transfer>
-        <include domain="user" path="."/>
+        <include domain="user" path="."
+            tools:ignore="FullBackupContent" />
         <include domain="file" path="."/>
     </device-transfer>
 </data-extraction-rules>

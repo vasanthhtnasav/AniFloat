@@ -5,6 +5,7 @@ build/
 # Local configuration
 local.properties
 .idea/
+.vscode/
 .cxx/
 
 # Android Studio
