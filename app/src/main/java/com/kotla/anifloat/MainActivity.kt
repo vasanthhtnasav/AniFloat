@@ -36,10 +36,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     
-                    // Observe token status to decide start destination or navigate
-                    // For simplicity, we rely on manual navigation or check in AppNavigation
-                    // Ideally, we'd have a ViewModel exposing "isLoggedIn" state.
-                    
                     AppNavigation(navController = navController)
                 }
             }
