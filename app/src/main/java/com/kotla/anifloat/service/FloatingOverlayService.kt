@@ -58,6 +58,10 @@ class FloatingOverlayService : LifecycleService(), SavedStateRegistryOwner, View
     
     // Drag State
     private var isOverCloseTarget by mutableStateOf(false)
+    
+    // Remember collapsed position
+    private var collapsedX: Int = 0
+    private var collapsedY: Int = 200
 
     private val savedStateRegistryController = SavedStateRegistryController.create(this)
     override val savedStateRegistry: SavedStateRegistry get() = savedStateRegistryController.savedStateRegistry
@@ -182,6 +186,10 @@ class FloatingOverlayService : LifecycleService(), SavedStateRegistryOwner, View
                                             
                                             layoutParams.x = targetX
                                             windowManager.updateViewLayout(overlayView, layoutParams)
+                                            
+                                            // Save collapsed position after snapping
+                                            collapsedX = layoutParams.x
+                                            collapsedY = layoutParams.y
                                         }
                                     }
                                     isOverCloseTarget = false
@@ -209,10 +217,20 @@ class FloatingOverlayService : LifecycleService(), SavedStateRegistryOwner, View
                             coverImage = coverImage,
                             onIncrement = { incrementProgress(1) },
                             onDecrement = { incrementProgress(-1) },
-                            onMinimize = { isCollapsed = true },
+                            onMinimize = { 
+                                // Restore saved collapsed position
+                                layoutParams.x = collapsedX
+                                layoutParams.y = collapsedY
+                                windowManager.updateViewLayout(overlayView, layoutParams)
+                                isCollapsed = true 
+                            },
                             onClose = { stopSelf() }, // Keep as backup or remove if strictly drag-only
                             isCollapsed = isCollapsed,
                             onExpand = { 
+                                // Save current collapsed position before expanding
+                                collapsedX = layoutParams.x
+                                collapsedY = layoutParams.y
+                                
                                 // Handle expansion logic to prevent off-screen clipping
                                 val displayWidth = resources.displayMetrics.widthPixels
                                 val density = resources.displayMetrics.density
