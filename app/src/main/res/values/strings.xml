@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">AniFloat</string>
     <string name="shortcut_recent_short">Quick overlay</string>
-    <string name="shortcut_recent_long">Open latest anime overlay</string>
+    <string name="shortcut_recent_long">Open latest animes overlay</string>
 </resources>
 
